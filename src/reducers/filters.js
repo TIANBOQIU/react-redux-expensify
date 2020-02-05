@@ -4,25 +4,32 @@
  * methods maintained: set text, sort by date/amount, set start/end date
  */
 
-const filtersReducerDefaultState = {
-  searchText: "",
+// Filters Reducer
+const filterReducerDefaultState = {
+  text: "",
   sortBy: "date",
   startDate: undefined,
   endDate: undefined
 };
-
-const filtersReducer = (state = filtersReducerDefaultState, action) => {
+const filterReducer = (state = filterReducerDefaultState, action) => {
   switch (action.type) {
     case "SET_TEXT":
       return {
         ...state,
-        searchText: action.searchText
+        text: action.text
       };
-    case "SORT_BY":
+    case "SORT_BY_DATE":
       return {
         ...state,
         sortBy: action.sortBy
       };
+
+    case "SORT_BY_AMOUNT":
+      return {
+        ...state,
+        sortBy: action.sortBy
+      };
+
     case "SET_START_DATE":
       return {
         ...state,
@@ -38,4 +45,4 @@ const filtersReducer = (state = filtersReducerDefaultState, action) => {
   }
 };
 
-export default filtersReducer;
+export default filterReducer;
