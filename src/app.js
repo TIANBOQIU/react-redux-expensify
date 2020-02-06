@@ -17,15 +17,16 @@ import "normalize.css";
 const store = configureStore();
 store.subscribe(() => console.log(store.getState()));
 // bootstrap data
+
 store.dispatch(
-  addExpense({ description: "water bill", amount: 300, createdAt: 100 })
+  addExpense({ description: "water bill", amount: 700, createdAt: 100 })
 );
 store.dispatch(
   addExpense({ description: "gas bill", amount: 500, createdAt: 300 })
 );
-
-store.dispatch(setTextFilter("water"));
-
+//store.dispatch(setTextFilter("gas"));
+//store.dispatch(sortByDate());
+store.dispatch(sortByAmount());
 //console.log(store.getState());
 
 const jsx = (
