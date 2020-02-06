@@ -1,7 +1,7 @@
 // FILTERS: SET TEXT
-export const setTextFilter = (text = "") => ({
+export const setTextFilter = (searchText = "") => ({
   type: "SET_TEXT",
-  text
+  searchText
 });
 
 // SORT_BY_DATE

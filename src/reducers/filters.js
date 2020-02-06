@@ -16,7 +16,7 @@ const filterReducer = (state = filterReducerDefaultState, action) => {
     case "SET_TEXT":
       return {
         ...state,
-        text: action.text
+        searchText: action.searchText
       };
     case "SORT_BY_DATE":
       return {

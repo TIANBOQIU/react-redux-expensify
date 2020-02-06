@@ -8,7 +8,7 @@ import AppRouter from "./components/routers/AppRouter";
 import { Provider } from "react-redux";
 import configureStore from "./store/configureStore";
 import { addExpense } from "./actions/expenses";
-import { setTextFilter } from "./actions/filters";
+import { setTextFilter, sortByAmount, sortByDate } from "./actions/filters";
 
 // CSS
 import "normalize.css";
@@ -23,6 +23,8 @@ store.dispatch(
 store.dispatch(
   addExpense({ description: "gas bill", amount: 500, createdAt: 300 })
 );
+
+store.dispatch(setTextFilter("water"));
 
 //console.log(store.getState());
 
