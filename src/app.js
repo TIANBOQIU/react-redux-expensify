@@ -24,7 +24,7 @@ store.dispatch(
   addExpense({ description: "gas bill", amount: 500, createdAt: 300 })
 );
 
-console.log(store.getState());
+//console.log(store.getState());
 
 const jsx = (
   <Provider store={store}>

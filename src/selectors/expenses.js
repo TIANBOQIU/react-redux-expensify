@@ -9,13 +9,15 @@ const getVisibleExpenses = (
 ) => {
   return expenses
     .filter(expense => {
+      //console.log(expense.description);
       const startDateMatch =
-        typeof startDate === "number" || expense.createdAt >= startDate;
+        typeof startDate !== "number" || expense.createdAt >= startDate;
       const endDateMatch =
-        typeof endDate === "number" || expense.createdAt <= endDate;
+        typeof endDate !== "number" || expense.createdAt <= endDate;
       const textMatch = expense.description
         .toLowerCase()
         .includes(searchText.toLowerCase());
+      //console.log(expense.description, startDateMatch, endDateMatch, textMatch);
       return startDateMatch && endDateMatch && textMatch;
     })
     .sort((a, b) => {
