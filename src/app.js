@@ -22,12 +22,11 @@ store.dispatch(
   addExpense({ description: "water bill", amount: 700, createdAt: 100 })
 );
 store.dispatch(
-  addExpense({ description: "gas bill", amount: 500, createdAt: 300 })
+  addExpense({ description: "gas bill", amount: 500, createdAt: 1000 })
 );
-//store.dispatch(setTextFilter("gas"));
-//store.dispatch(sortByDate());
-store.dispatch(sortByAmount());
-//console.log(store.getState());
+store.dispatch(
+  addExpense({ description: "rent", amount: 109500, createdAt: 200 })
+);
 
 const jsx = (
   <Provider store={store}>
