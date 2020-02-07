@@ -6,12 +6,14 @@ import { BrowserRouter, Switch, Route } from "react-router-dom";
 import HomePage from "../pages/HomePage";
 import NotFoundPage from "../pages/NotFoundPage";
 import Header from "../Header";
+import AddExpensePage from "../pages/AddExpensePage";
 const AppRouter = () => (
   <BrowserRouter>
     <div>
       <Header />
       <Switch>
         <Route path="/" component={HomePage} exact={true} />
+        <Route path="/create" component={AddExpensePage} />
         <Route component={NotFoundPage} />
       </Switch>
     </div>
