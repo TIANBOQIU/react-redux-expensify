@@ -1,10 +1,12 @@
 import React from "react";
+import uuid from "uuid";
 import moment from "moment";
 import "react-dates/initialize";
 import { SingleDatePicker } from "react-dates";
 import "react-dates/lib/css/_datepicker.css";
 //const date = new Date();;
 const now = moment();
+
 console.log(now.format("MMM Do, YYYY"));
 
 export default class ExpenseForm extends React.Component {
@@ -13,7 +15,8 @@ export default class ExpenseForm extends React.Component {
     note: "",
     amount: "",
     createdAt: moment(),
-    calendarFocused: false
+    calendarFocused: false,
+    error: ""
   };
 
   onDescriptionChange = e => {
@@ -30,23 +33,46 @@ export default class ExpenseForm extends React.Component {
     const amount = e.target.value;
     // form validation
 
-    if (amount.match(/^\d*(\.\d{0,2})?$/)) {
+    if (!amount || amount.match(/^\d{1,}(\.\d{0,2})?$/)) {
       this.setState(() => ({ amount }));
     }
   };
 
   onDateChange = createdAt => {
-    this.setState(() => ({ createdAt }));
+    if (createdAt) {
+      this.setState(() => ({ createdAt }));
+    }
   };
 
   onFocusChange = ({ focused }) => {
     this.setState(() => ({ calendarFocused: focused }));
   };
 
+  onSubmit = e => {
+    e.preventDefault();
+
+    if (!this.state.description || !this.state.amount) {
+      // Set error state equal to '..'
+      this.setState(() => ({ error: "Please provide description and amount" }));
+    } else {
+      // clear the error
+      this.setState(() => ({ error: "" }));
+      //console.log("submitted!");
+
+      this.props.onSubmit({
+        description: this.state.description,
+        amount: parseFloat(this.state.amount, 10) * 100,
+        createdAt: this.state.createdAt.valueOf(),
+        note: this.state.note
+      });
+    }
+  };
+
   render() {
     return (
       <div>
-        <form>
+        {this.state.error && <p style={{ color: "red" }}>{this.state.error}</p>}
+        <form onSubmit={this.onSubmit}>
           <input
             type="text"
             placeholder="Description"
@@ -66,7 +92,7 @@ export default class ExpenseForm extends React.Component {
             onDateChange={this.onDateChange} // PropTypes.func.isRequired
             focused={this.state.calendarFocused} // PropTypes.bool
             onFocusChange={this.onFocusChange} // PropTypes.func.isRequired
-            id="your_unique_id" // PropTypes.string.isRequired,
+            id={uuid()} // PropTypes.string.isRequired,
             numberOfMonths={1}
             isOutsideRange={day => false}
           />
