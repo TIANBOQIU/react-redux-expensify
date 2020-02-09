@@ -2,7 +2,7 @@
  * selector for store:expenses
  * filtering and sorting
  */
-
+import moment from "moment";
 const getVisibleExpenses = (
   expenses,
   { searchText, sortBy, startDate, endDate }
@@ -10,10 +10,11 @@ const getVisibleExpenses = (
   return expenses
     .filter(expense => {
       //console.log(expense.description);
+      const createdAtMoment = moment(expense.createdAt);
       const startDateMatch =
-        typeof startDate !== "number" || expense.createdAt >= startDate;
-      const endDateMatch =
-        typeof endDate !== "number" || expense.createdAt <= endDate;
+        !startDate || startDate.isSameOrBefore(createdAtMoment, "day");
+
+      const endDateMatch = !endDate || endDate.isSameOrAfter(createdAtMoment);
       const textMatch = expense.description
         .toLowerCase()
         .includes(searchText.toLowerCase());

@@ -4,12 +4,14 @@
  * methods maintained: set text, sort by date/amount, set start/end date
  */
 
+import moment from "moment";
+
 // Filters Reducer
 const filterReducerDefaultState = {
   searchText: "",
   sortBy: "date",
-  startDate: undefined,
-  endDate: undefined
+  startDate: moment().startOf("month"),
+  endDate: moment().endOf("month")
 };
 const filterReducer = (state = filterReducerDefaultState, action) => {
   switch (action.type) {
