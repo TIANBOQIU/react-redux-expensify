@@ -11,7 +11,7 @@ exports[`should render ExpenseListItem correctly 1`] = `
   </[object Object]>
   <p>
     amount: 
-    195
+    19.15
      created at: 
     0
   </p>
