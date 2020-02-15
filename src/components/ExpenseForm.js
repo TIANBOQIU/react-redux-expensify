@@ -3,7 +3,7 @@ import uuid from "uuid";
 import moment from "moment";
 import "react-dates/initialize";
 import { SingleDatePicker } from "react-dates";
-import "react-dates/lib/css/_datepicker.css";
+// import "react-dates/lib/css/_datepicker.css";
 //const date = new Date();;
 const now = moment();
 
